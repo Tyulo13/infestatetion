@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://b85wti7gjkbwl"]
+
+[ext_resource type="Script" uid="uid://c0x3yk65c64e6" path="res://scripts/fly.gd" id="1_0q40q"]
+[ext_resource type="Texture2D" uid="uid://c3elc4yb8h3qy" path="res://images/bugs/mosquitodead.png" id="2_0q40q"]
+[ext_resource type="Texture2D" uid="uid://mnup8ovol5yb" path="res://images/bugs/mosquito1.png" id="3_ty75x"]
+[ext_resource type="Texture2D" uid="uid://dbqspxgi5y70o" path="res://images/bugs/mosquito2.png" id="4_sb5yb"]
+[ext_resource type="AudioStream" uid="uid://bc61rr3f1v8c6" path="res://sfx/Flybuzz.mp3" id="5_tkvbd"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sgyng"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_0q40q")
+}],
+"loop": true,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_ty75x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_sb5yb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0qovp"]
+radius = 4.0
+
+[node name="Mosquito" type="RigidBody2D" unique_id=1857652507]
+script = ExtResource("1_0q40q")
+speed = 60.0
+randomspeed = 15.0
+metadata/bug = true
+metadata/evil = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1389544356]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_sgyng")
+frame_progress = 0.5178122
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1701547961]
+shape = SubResource("CircleShape2D_0qovp")
+
+[node name="Buzz" type="AudioStreamPlayer2D" parent="." unique_id=1105670307]
+stream = ExtResource("5_tkvbd")
+pitch_scale = 1.8

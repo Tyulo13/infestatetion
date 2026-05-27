@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://dfnddhwv4g84m"]
+
+[ext_resource type="Script" uid="uid://rf3kxuftl1k7" path="res://scripts/wasp.gd" id="1_dheoi"]
+[ext_resource type="Texture2D" uid="uid://d2kgvh5d0uqy7" path="res://images/bugs/waspdead.png" id="2_hegnn"]
+[ext_resource type="Texture2D" uid="uid://dnrcsu6vnqeml" path="res://images/bugs/wasp1.png" id="3_6s73a"]
+[ext_resource type="Texture2D" uid="uid://dw476jqqqy157" path="res://images/bugs/wasp2.png" id="4_7u84t"]
+[ext_resource type="AudioStream" uid="uid://blbrglxaxfmqm" path="res://sfx/Bee Buzzing - Sound Effect.mp3" id="5_2dr2q"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ykkpv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_hegnn")
+}],
+"loop": true,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_6s73a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_7u84t")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0qovp"]
+radius = 3.1622777
+
+[node name="Wasp" type="RigidBody2D" unique_id=1857652507]
+gravity_scale = 0.255
+script = ExtResource("1_dheoi")
+metadata/bug = true
+metadata/pokey = true
+metadata/wasp = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1389544356]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_ykkpv")
+frame = 1
+frame_progress = 0.037351195
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1701547961]
+shape = SubResource("CircleShape2D_0qovp")
+
+[node name="Buzz" type="AudioStreamPlayer2D" parent="." unique_id=1105670307]
+stream = ExtResource("5_2dr2q")

@@ -1,0 +1,94 @@
+[gd_scene format=3 uid="uid://b5551iv71a6ey"]
+
+[ext_resource type="Texture2D" uid="uid://cdcgtyfabfc6t" path="res://images/chicken/chicken1.png" id="1_isa2u"]
+[ext_resource type="Script" uid="uid://btf5vexlhg6mx" path="res://scripts/chicken.gd" id="1_rc7ma"]
+[ext_resource type="Texture2D" uid="uid://nlcauxtlp83x" path="res://images/chicken/chicken2.png" id="2_tl7hd"]
+[ext_resource type="AudioStream" uid="uid://bh584q541os03" path="res://sfx/Cartoon Chomp - Sound Effect HD-[AudioTrimmer.com].mp3" id="4_rc7ma"]
+[ext_resource type="Texture2D" uid="uid://bvspgria5s7uo" path="res://images/chicken/chickengone.png" id="4_trwpf"]
+[ext_resource type="Texture2D" uid="uid://c2t34fi2typ7" path="res://images/chicken/chickenwounded1.png" id="5_r70ld"]
+[ext_resource type="Texture2D" uid="uid://dsmry4xvwhro2" path="res://images/chicken/chickenwounded2.png" id="6_tj7r2"]
+[ext_resource type="Texture2D" uid="uid://blxf6nkpdjdt4" path="res://images/chicken/chickenwoundedbad1.png" id="7_wx60v"]
+[ext_resource type="Texture2D" uid="uid://38yq43w1jn37" path="res://images/chicken/chickenwoundedbad2.png" id="8_g67ly"]
+[ext_resource type="Texture2D" uid="uid://bdfx1cbwijpof" path="res://images/chicken/chickenwoundedworse1.png" id="9_cjd2c"]
+[ext_resource type="Texture2D" uid="uid://c1ps4a2u2s4kh" path="res://images/chicken/chickenwoundedworse2.png" id="10_njpjb"]
+[ext_resource type="AudioStream" uid="uid://cm634oja1qhne" path="res://sfx/Sad Trombone - Sound Effect (HD).mp3" id="12_r70ld"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vtlia"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_isa2u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_tl7hd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_trwpf")
+}],
+"loop": true,
+"name": &"gone",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_r70ld")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_tj7r2")
+}],
+"loop": true,
+"name": &"wounded",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_wx60v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_g67ly")
+}],
+"loop": true,
+"name": &"wounded_bad",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_cjd2c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_njpjb")
+}],
+"loop": true,
+"name": &"wounded_worse",
+"speed": 1.0
+}]
+
+[node name="Chicken" type="Area2D" unique_id=49099976]
+script = ExtResource("1_rc7ma")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1771633685]
+position = Vector2(-0.8541681, -18.312498)
+scale = Vector2(0.9027777, 0.8482144)
+polygon = PackedVector2Array(15, 14, 14, 28, -12, 28, -11, 18)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=657317282]
+texture_filter = 1
+position = Vector2(0, -22)
+sprite_frames = SubResource("SpriteFrames_vtlia")
+animation = &"wounded"
+frame = 1
+frame_progress = 0.62793285
+
+[node name="ChompSFX" type="AudioStreamPlayer2D" parent="." unique_id=1923479143]
+stream = ExtResource("4_rc7ma")
+volume_db = -0.135
+
+[node name="FailSFX" type="AudioStreamPlayer" parent="." unique_id=1006030990]
+stream = ExtResource("12_r70ld")
+volume_db = -13.472
+pitch_scale = 1.1

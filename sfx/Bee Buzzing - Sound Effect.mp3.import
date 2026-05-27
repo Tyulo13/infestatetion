@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://blbrglxaxfmqm"
+path="res://.godot/imported/Bee Buzzing - Sound Effect.mp3-9e22ebe974fa3c5cdef0d8e77028245b.mp3str"
+
+[deps]
+
+source_file="res://sfx/Bee Buzzing - Sound Effect.mp3"
+dest_files=["res://.godot/imported/Bee Buzzing - Sound Effect.mp3-9e22ebe974fa3c5cdef0d8e77028245b.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

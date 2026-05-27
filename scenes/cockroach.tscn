@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://cm7jdis4vwqjv"]
+
+[ext_resource type="Script" uid="uid://dtgyvt3tjk6ud" path="res://scripts/cockroach.gd" id="1_sus26"]
+[ext_resource type="Texture2D" uid="uid://dxjihxnfhnomp" path="res://images/bugs/cockroachdead.png" id="2_t5dbp"]
+[ext_resource type="Texture2D" uid="uid://7kro4i8lftlt" path="res://images/bugs/cockroack1.png" id="3_sa2gk"]
+[ext_resource type="Texture2D" uid="uid://s52lf3py83kv" path="res://images/bugs/cockroack2.png" id="4_chvl0"]
+[ext_resource type="Texture2D" uid="uid://d4b0vcynkf3by" path="res://images/bugs/cockroachhurt1.png" id="5_cjapu"]
+[ext_resource type="AudioStream" uid="uid://bc61rr3f1v8c6" path="res://sfx/Flybuzz.mp3" id="5_sa2gk"]
+[ext_resource type="Texture2D" uid="uid://bkdr1ea7ybxyq" path="res://images/bugs/cockroachhurt2.png" id="6_lqluf"]
+[ext_resource type="AudioStream" uid="uid://ct14iy3kx18kd" path="res://sfx/bread crunch - sound effect-[AudioTrimmer.com].mp3" id="8_t5dbp"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1khnq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_t5dbp")
+}],
+"loop": true,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_sa2gk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_chvl0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_cjapu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_lqluf")
+}],
+"loop": true,
+"name": &"wounded",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sus26"]
+radius = 7.0
+height = 14.0
+
+[node name="Cockroach" type="RigidBody2D" unique_id=1857652507]
+script = ExtResource("1_sus26")
+metadata/bug = true
+metadata/evil = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1389544356]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_1khnq")
+animation = &"dead"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1701547961]
+shape = SubResource("CapsuleShape2D_sus26")
+
+[node name="Buzz" type="AudioStreamPlayer2D" parent="." unique_id=1105670307]
+stream = ExtResource("5_sa2gk")
+
+[node name="Crunch" type="AudioStreamPlayer2D" parent="." unique_id=2112651889]
+stream = ExtResource("8_t5dbp")
+volume_db = 5.832
+pitch_scale = 2.2

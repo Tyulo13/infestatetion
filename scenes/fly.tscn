@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://d1g6tmlklel8f"]
+
+[ext_resource type="Script" uid="uid://c0x3yk65c64e6" path="res://scripts/fly.gd" id="1_2lkvx"]
+[ext_resource type="Texture2D" uid="uid://bl4efybgbr0sn" path="res://images/bugs/fly1.png" id="1_xr3pu"]
+[ext_resource type="Texture2D" uid="uid://baiasvufcpd0q" path="res://images/bugs/flydead.png" id="2_0qovp"]
+[ext_resource type="Texture2D" uid="uid://be5vrtg8hq4jn" path="res://images/bugs/fly2.png" id="2_2lkvx"]
+[ext_resource type="AudioStream" uid="uid://bc61rr3f1v8c6" path="res://sfx/Flybuzz.mp3" id="4_sgyng"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sgyng"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_0qovp")
+}],
+"loop": true,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_xr3pu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_2lkvx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0qovp"]
+radius = 3.1622777
+
+[node name="Fly" type="RigidBody2D" unique_id=1857652507]
+script = ExtResource("1_2lkvx")
+metadata/bug = true
+metadata/evil = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1389544356]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_sgyng")
+animation = &"dead"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1701547961]
+shape = SubResource("CircleShape2D_0qovp")
+
+[node name="Buzz" type="AudioStreamPlayer2D" parent="." unique_id=1105670307]
+stream = ExtResource("4_sgyng")

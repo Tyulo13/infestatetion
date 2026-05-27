@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://c5dc0oxxyf6cj"]
+
+[ext_resource type="PackedScene" uid="uid://b5551iv71a6ey" path="res://scenes/chicken.tscn" id="1_o5qli"]
+[ext_resource type="PackedScene" uid="uid://d1g6tmlklel8f" path="res://scenes/fly.tscn" id="1_sugp2"]
+[ext_resource type="Texture2D" uid="uid://jsygawqxuf5v" path="res://images/kitchenbackground.png" id="2_0wfyh"]
+[ext_resource type="Script" uid="uid://ryjkfprbkjbl" path="res://scripts/spawner_node.gd" id="4_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://bmxsrxa47r1uy" path="res://scenes/bee.tscn" id="5_tefeu"]
+[ext_resource type="PackedScene" uid="uid://qex58cqgfu0q" path="res://scenes/hand.tscn" id="6_o6xl0"]
+[ext_resource type="PackedScene" uid="uid://b85wti7gjkbwl" path="res://scenes/mosquito.tscn" id="6_tipki"]
+[ext_resource type="PackedScene" uid="uid://cm7jdis4vwqjv" path="res://scenes/cockroach.tscn" id="7_tipki"]
+[ext_resource type="PackedScene" uid="uid://dfnddhwv4g84m" path="res://scenes/wasp.tscn" id="8_choun"]
+[ext_resource type="AudioStream" uid="uid://co22b4ckpgjgh" path="res://sfx/Bicycle  Cycling [Pokémon_ HeartGold & SoulSilver].mp3" id="9_85g3d"]
+[ext_resource type="Script" uid="uid://cfe54xfwn5f2x" path="res://scenes/time_control.gd" id="11_ya4ey"]
+
+[node name="Main" type="Node2D" unique_id=579155017]
+
+[node name="Fly" parent="." unique_id=1857652507 node_paths=PackedStringArray("target") instance=ExtResource("1_sugp2")]
+position = Vector2(300, 69)
+gravity_scale = 0.0
+inertia = 2.27
+target = NodePath("../Chicken")
+
+[node name="Chicken" parent="." unique_id=49099976 instance=ExtResource("1_o5qli")]
+position = Vector2(160, 108)
+
+[node name="Background" type="Sprite2D" parent="." unique_id=611180324]
+z_index = -100
+texture_filter = 1
+position = Vector2(160, 90)
+texture = ExtResource("2_0wfyh")
+
+[node name="SpawnerNode" type="Node2D" parent="." unique_id=1219772293]
+position = Vector2(160, 90)
+script = ExtResource("4_jyhfs")
+fly = ExtResource("1_sugp2")
+bee = ExtResource("5_tefeu")
+mosquito = ExtResource("6_tipki")
+cockroach = ExtResource("7_tipki")
+wasp = ExtResource("8_choun")
+
+[node name="Hand" parent="." unique_id=585957573 instance=ExtResource("6_o6xl0")]
+position = Vector2(222, 122)
+
+[node name="BicycleCycling[pokémonHeartGold&SoulSilver]" type="AudioStreamPlayer" parent="." unique_id=1957012391]
+stream = ExtResource("9_85g3d")
+volume_db = -14.821
+pitch_scale = 1.2
+autoplay = true
+
+[node name="TimeControl" type="Control" parent="." unique_id=1185284848]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 6.0
+offset_top = -1.0
+offset_right = 69.0
+offset_bottom = 23.0
+script = ExtResource("11_ya4ey")
+
+[node name="Label" type="Label" parent="TimeControl" unique_id=1479631940]
+layout_mode = 0
+offset_top = 5.0
+offset_right = 40.0
+offset_bottom = 44.0
+theme_override_font_sizes/font_size = 13
+text = "0
+"
+
+[connection signal="slapped" from="Fly" to="Fly" method="_on_slapped"]

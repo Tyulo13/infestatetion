@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://qex58cqgfu0q"]
+
+[ext_resource type="Texture2D" uid="uid://c7qeby84ljo88" path="res://images/handout.png" id="1_cmdsa"]
+[ext_resource type="Script" uid="uid://bs27a23rm2xjh" path="res://scripts/hand.gd" id="1_k7pjy"]
+[ext_resource type="Texture2D" uid="uid://dq7et81kfuhds" path="res://images/handflat.png" id="2_k7pjy"]
+[ext_resource type="Texture2D" uid="uid://dugk1c40h2hg5" path="res://images/pokedhand.png" id="4_kdemd"]
+[ext_resource type="AudioStream" uid="uid://bn871gqso46ei" path="res://sfx/SwatSFX.mp3" id="4_m1v21"]
+[ext_resource type="AudioStream" uid="uid://b3sewy8hj0o7s" path="res://sfx/Cartoon poke sound effect-[AudioTrimmer.com].mp3" id="6_n04oe"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m1v21"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_cmdsa")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_k7pjy")
+}],
+"loop": true,
+"name": &"flat",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_kdemd")
+}],
+"loop": true,
+"name": &"stung",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kdemd"]
+radius = 73.0
+height = 192.0
+
+[node name="Hand" type="Area2D" unique_id=585957573]
+z_index = 100
+scale = Vector2(0.08, 0.08)
+script = ExtResource("1_k7pjy")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=202818203]
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_m1v21")
+animation = &"stung"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=282984838]
+position = Vector2(5, 27)
+shape = SubResource("CapsuleShape2D_kdemd")
+
+[node name="Swat" type="AudioStreamPlayer2D" parent="." unique_id=663137844]
+stream = ExtResource("4_m1v21")
+
+[node name="Poke" type="AudioStreamPlayer2D" parent="." unique_id=1686223809]
+stream = ExtResource("6_n04oe")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
